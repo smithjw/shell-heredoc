@@ -13,7 +13,7 @@ const defs = [
     { tags: ['SHELL', 'BASH', 'ZSH'], scope: 'source.shell' },
     { tags: ['SQL'], scope: 'source.sql' },
     { tags: ['HTML'], scope: 'text.html.basic' },
-    { tags: ['XML'], scope: 'text.xml' },
+    { tags: ['XML', 'PLIST'], scope: 'text.xml' },
     { tags: ['JS', 'JAVASCRIPT'], scope: 'source.js' },
     { tags: ['TS', 'TYPESCRIPT'], scope: 'source.ts' },
     { tags: ['MARKDOWN', 'MD'], scope: 'text.html.markdown' }

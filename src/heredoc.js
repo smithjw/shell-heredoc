@@ -1,31 +1,34 @@
-// Registry of tags to validate.
+// Registry mapping heredoc tag (exact, uppercase) to validator key.
+// Extend here to support new validator handlers.
 const TAG_TO_HANDLER = {
     JSON: 'json',
-    // Add more down the line
+    YAML: 'yaml',
+    YML: 'yaml',
+    XML: 'xml',
+    PLIST: 'xml'
 };
+
+function escapeRe(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 function findBlocks(doc) {
     const tags = Object.keys(TAG_TO_HANDLER);
-    if (tags.length === 0) return [];
-    const tagAlt = tags.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
-
-    // Match << or <<-, optional quotes, one of our tags; tolerate anything after (redir/pipe/comment)
-    const startRe = new RegExp(String.raw`<<-?\s*(['"]?)(` + tagAlt + String.raw`)(['"]?).*$`);
+    if (!tags.length) return [];
+    const tagAlt = tags.map(escapeRe).join('|');
+    const startRe = new RegExp(String.raw`<<-?\s*(['"]?)(${tagAlt})(\1).*$`);
     const blocks = [];
 
     for (let i = 0; i < doc.lineCount; i++) {
         const line = doc.lineAt(i).text;
         const m = line.match(startRe);
         if (!m) continue;
-
         const tag = m[2];
-        // Find the terminator: the tag alone on a line (whitespace allowed)
-        const endRe = new RegExp(String.raw`^\s*` + tag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + String.raw`\s*$`);
+        const endRe = new RegExp(String.raw`^\s*` + escapeRe(tag) + String.raw`\s*$`);
         for (let j = i + 1; j < doc.lineCount; j++) {
-            const endLine = doc.lineAt(j).text;
-            if (endRe.test(endLine)) {
-                blocks.push({ tag, startLine: i + 1, endLine: j }); // body is [startLine, endLine)
-                i = j; // continue after this block
+            if (endRe.test(doc.lineAt(j).text)) {
+                blocks.push({ tag, startLine: i + 1, endLine: j }); // body: [startLine, endLine)
+                i = j;
                 break;
             }
         }

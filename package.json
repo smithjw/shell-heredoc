@@ -1,18 +1,28 @@
 {
     "name": "shell-heredoc",
     "displayName": "shell-heredoc",
-    "description": "Highlights code within shell heredoc strings",
-    "version": "0.1.0",
+    "description": "Highlights and validates JSON / YAML / XML inside shell heredoc blocks",
+    "version": "0.2.1",
     "repository": "https://github.com/smithjw/shell-heredoc",
     "publisher": "smithjw",
     "icon": "images/icon.png",
     "engines": {
-        "vscode": "^1.104.0"
+        "vscode": "^1.80.0"
     },
     "categories": [
         "Programming Languages"
     ],
-    "main": "./src/extension.js",
+    "keywords": [
+        "bash",
+        "shell",
+        "heredoc",
+        "json",
+        "yaml",
+        "yml",
+        "xml",
+        "validation"
+    ],
+    "main": "./dist/extension.js",
     "activationEvents": [
         "onLanguage:shellscript"
     ],
@@ -25,19 +35,60 @@
                     "source.shell"
                 ]
             }
+        ],
+        "configuration": {
+            "title": "Shell Heredoc",
+            "properties": {
+                "shellHeredoc.validate.json": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Validate JSON heredocs."
+                },
+                "shellHeredoc.validate.yaml": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Validate YAML/YML heredocs."
+                },
+                "shellHeredoc.validate.xml": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Validate XML heredocs."
+                },
+                "shellHeredoc.maxBytes": {
+                    "type": "number",
+                    "default": 200000,
+                    "description": "Skip validation for large heredocs (bytes)."
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "shellHeredoc.revalidateCurrent",
+                "title": "Shell Heredoc: Revalidate Current File"
+            }
         ]
+    },
+    "scripts": {
+        "build": "node scripts/build-grammar.mjs && esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --external:vscode-json-languageservice --sourcemap --outfile=dist/extension.js",
+        "dev": "esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --external:vscode-json-languageservice --watch --sourcemap --outfile=dist/extension.js",
+        "vscode:prepublish": "pnpm run build",
+        "package": "rm -rf dist && npm ci && npm run build && vsce package",
+        "publish": "rm -rf dist && npm ci && npm run build && vsce publish",
+        "test": "mocha --recursive test",
+        "clean": "rm -rf dist *.vsix"
     },
     "dependencies": {
         "vscode-json-languageservice": "^5.6.1",
         "vscode-languageserver-textdocument": "^1.0.12"
     },
-    "scripts": {
-        "build:grammar": "node scripts/build-grammar.mjs",
-        "dev": "node scripts/build-grammar.mjs",
-        "vscode:prepublish": "node scripts/build-grammar.mjs",
-        "package": "pnpm run build:grammar && vsce package"
-    },
     "devDependencies": {
-        "@vscode/vsce": "^3.0.0"
-    }
+        "@vscode/vsce": "^3.0.0",
+        "esbuild": "^0.23.0",
+        "fast-xml-parser": "^4.5.0",
+        "js-yaml": "^4.1.0",
+        "mocha": "^11.0.0",
+        "@types/mocha": "^10.0.7",
+        "assert": "^2.1.0"
+    },
+    "packageManager": "pnpm@10.16.1"
 }

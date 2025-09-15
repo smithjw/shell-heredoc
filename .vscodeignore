@@ -1,11 +1,9 @@
-.vscode/**
-.vscode-test/**
+# Keep sources for validators (we ship node_modules dependencies now)
 src/**
+scripts/**
+test/**
+.eslintrc.*
+.prettier*
+.vscode/**
 .gitignore
-.yarnrc
-vsc-extension-quickstart.md
-**/tsconfig.json
-**/eslint.config.mjs
-**/*.map
-**/*.ts
-**/.vscode-test.*
+*.map

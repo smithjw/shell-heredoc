@@ -14,18 +14,46 @@ experimental = true
 [env]
 _.path = ["./node_modules/.bin"]
 
-[tasks.pnpm-install]
-description = "Installs dependencies with pnpm"
+[tasks.install]
+description = "Install dependencies (dev via pnpm)"
 run = "pnpm install"
 sources = ["package.json", "pnpm-lock.yaml", "mise.toml"]
 outputs = ["node_modules/.pnpm/lock.yaml"]
 
-[tasks.dev]
-description = "Calls your dev script in `package.json`"
-run = "node --run dev"
-depends = ["pnpm-install"]
+[tasks.build]
+description = "Build grammar + bundle"
+run = "pnpm run build"
+depends = ["install"]
 
+[tasks.dev]
+description = "Watch/bundle for development"
+run = "pnpm run dev"
+depends = ["install"]
+
+[tasks.test]
+description = "Run test suite"
+run = "pnpm test"
+depends = ["install"]
+
+[tasks.clean]
+description = "Clean build artifacts"
+run = "pnpm run clean"
+
+# Packaging uses npm to avoid npm list issues with pnpm layout.
 [tasks.package]
-description = "Build grammar and package VSIX"
-run = "pnpm run package"
-depends = ["pnpm-install"]
+description = "Create VSIX (clean npm install)"
+run = """
+rm -rf node_modules package-lock.json
+npm install
+npm run package
+"""
+depends = ["clean"]
+
+[tasks.publish]
+description = "Publish extension (clean npm install)"
+run = """
+rm -rf node_modules package-lock.json
+npm install
+npm run publish
+"""
+depends = ["clean"]
