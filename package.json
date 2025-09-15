@@ -2,7 +2,7 @@
     "name": "shell-heredoc",
     "displayName": "shell-heredoc",
     "description": "Highlights code within shell heredoc strings",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "repository": "https://github.com/smithjw/shell-heredoc",
     "publisher": "smithjw",
     "icon": "images/icon.png",
