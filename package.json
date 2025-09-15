@@ -4,6 +4,8 @@
     "description": "Highlights code within shell heredoc strings",
     "version": "0.0.1",
     "repository": "https://github.com/smithjw/shell-heredoc",
+    "publisher": "smithjw",
+    "icon": "images/icon.png",
     "engines": {
         "vscode": "^1.104.0"
     },
