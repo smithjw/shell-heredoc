@@ -1,0 +1,573 @@
+{
+  "scopeName": "shell.heredoc.injections",
+  "injectionSelector": "L:source.shell",
+  "patterns": [
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(JSON)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:JSON)\\s*$)",
+      "contentName": "source.json",
+      "patterns": [
+        {
+          "include": "source.json"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
+    },
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(YAML|YML)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:YAML|YML)\\s*$)",
+      "contentName": "source.yaml",
+      "patterns": [
+        {
+          "include": "source.yaml"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
+    },
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(SHELL|BASH|ZSH)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:SHELL|BASH|ZSH)\\s*$)",
+      "contentName": "source.shell",
+      "patterns": [
+        {
+          "include": "source.shell"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
+    },
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(SQL)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:SQL)\\s*$)",
+      "contentName": "source.sql",
+      "patterns": [
+        {
+          "include": "source.sql"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
+    },
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(HTML)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:HTML)\\s*$)",
+      "contentName": "text.html.basic",
+      "patterns": [
+        {
+          "include": "text.html.basic"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
+    },
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(XML)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:XML)\\s*$)",
+      "contentName": "text.xml",
+      "patterns": [
+        {
+          "include": "text.xml"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
+    },
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(JS|JAVASCRIPT)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:JS|JAVASCRIPT)\\s*$)",
+      "contentName": "source.js",
+      "patterns": [
+        {
+          "include": "source.js"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
+    },
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(TS|TYPESCRIPT)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:TS|TYPESCRIPT)\\s*$)",
+      "contentName": "source.ts",
+      "patterns": [
+        {
+          "include": "source.ts"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
+    },
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(MARKDOWN|MD)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:MARKDOWN|MD)\\s*$)",
+      "contentName": "text.html.markdown",
+      "patterns": [
+        {
+          "include": "text.html.markdown"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
+    }
+  ]
+}

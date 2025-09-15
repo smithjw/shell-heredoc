@@ -1,0 +1,33 @@
+{
+    "name": "shell-heredoc",
+    "displayName": "shell-heredoc",
+    "description": "Highlights code within shell heredoc strings",
+    "version": "0.0.1",
+    "repository": "https://github.com/smithjw/shell-heredoc",
+    "engines": {
+        "vscode": "^1.104.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "grammars": [
+            {
+                "scopeName": "shell.heredoc.injections",
+                "path": "./syntaxes/shell-heredoc-injections.tmLanguage.json",
+                "injectTo": [
+                    "source.shell"
+                ]
+            }
+        ]
+    },
+    "scripts": {
+        "build:grammar": "node scripts/build-grammar.mjs",
+        "dev": "node scripts/build-grammar.mjs",
+        "vscode:prepublish": "node scripts/build-grammar.mjs",
+        "package": "pnpm run build:grammar && vsce package"
+    },
+    "devDependencies": {
+        "@vscode/vsce": "^3.0.0"
+    }
+}
