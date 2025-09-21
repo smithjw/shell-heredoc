@@ -54,6 +54,11 @@
                     "default": true,
                     "description": "Validate XML heredocs."
                 },
+                "shellHeredoc.validate.python": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Validate Python heredocs."
+                },
                 "shellHeredoc.maxBytes": {
                     "type": "number",
                     "default": 200000,
