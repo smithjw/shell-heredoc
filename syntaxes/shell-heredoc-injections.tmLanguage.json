@@ -568,6 +568,69 @@
           "name": "comment.line.number-sign.shell"
         }
       }
+    },
+    {
+      "begin": "(<<-?)\\s*(['\"]?)(PYTHON|PY)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
+      "end": "(?=^\\s*(?:PYTHON|PY)\\s*$)",
+      "contentName": "source.python",
+      "patterns": [
+        {
+          "include": "source.python"
+        }
+      ],
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.operator.heredoc.shell"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "3": {
+          "name": "entity.name.tag.heredoc.shell"
+        },
+        "4": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "5": {
+          "name": "constant.numeric.file-descriptor.shell"
+        },
+        "6": {
+          "name": "keyword.operator.redirect.shell"
+        },
+        "7": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "8": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "9": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "10": {
+          "name": "punctuation.definition.string.begin.shell"
+        },
+        "11": {
+          "name": "string.quoted.single.shell"
+        },
+        "12": {
+          "name": "punctuation.definition.string.end.shell"
+        },
+        "13": {
+          "name": "variable.other.readwrite.shell"
+        },
+        "14": {
+          "name": "string.unquoted.filename.shell"
+        },
+        "15": {
+          "name": "keyword.operator.pipe.shell"
+        },
+        "16": {
+          "name": "meta.pipeline.command.shell"
+        },
+        "17": {
+          "name": "comment.line.number-sign.shell"
+        }
+      }
     }
   ]
 }

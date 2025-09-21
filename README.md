@@ -1,6 +1,6 @@
 # shell-heredoc README
 
-`shell-heredoc` is a VS Code extension that provides syntax highlighting within bash/shell heredocs based on the delimiter tag.
+`shell-heredoc` is a VS Code extension that provides syntax highlighting and validation within bash/shell heredocs based on the delimiter tag.
 
 ``` shell
 #!/bin/bash
@@ -24,6 +24,7 @@ This extension automatically detects and highlights code within heredoc blocks u
 | `javascript` | `JS`, `JAVASCRIPT`     |
 | `typescript` | `TS`, `TYPESCRIPT`     |
 | `markdown`   | `MARKDOWN`, `MD`       |
+| `python`     | `PYTHON`, `PY`         |
 
 ## Installation
 
@@ -42,6 +43,18 @@ SELECT name, email
 FROM users
 WHERE active = true;
 SQL
+```
+
+```bash
+python3 << PYTHON
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+for i in range(5):
+    print(f"F({i}) = {fibonacci(i)}")
+PYTHON
 ```
 
 ## Requirements

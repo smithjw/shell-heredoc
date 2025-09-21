@@ -7,6 +7,7 @@ const { getLanguageService } = require('vscode-json-languageservice');
 const { TextDocument } = require('vscode-languageserver-textdocument');
 const yamlValidator = require('./languages/yaml');
 const xmlValidator = require('./languages/xml');
+const pythonValidator = require('./languages/python');
 
 // Initialize JSON language service once.
 const jsonService = getLanguageService({});
@@ -29,7 +30,8 @@ async function validateJson(text) {
 const HANDLERS = {
     json: validateJson,
     yaml: yamlValidator.validate,
-    xml: xmlValidator.validate
+    xml: xmlValidator.validate,
+    python: pythonValidator.validate
 };
 
 // Cache last diagnostics version per document to avoid redundant work.
@@ -40,6 +42,7 @@ function enabledFor(key) {
     if (key === 'json' && !cfg.get('shellHeredoc.validate.json')) return false;
     if (key === 'yaml' && !cfg.get('shellHeredoc.validate.yaml')) return false;
     if (key === 'xml' && !cfg.get('shellHeredoc.validate.xml')) return false;
+    if (key === 'python' && !cfg.get('shellHeredoc.validate.python')) return false;
     return true;
 }
 
