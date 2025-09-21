@@ -1,6 +1,6 @@
 # shell-heredoc README
 
-`shell-heredoc` is a VS Code extension that provides syntax highlighting within bash/shell heredocs based on the delimiter tag.
+`shell-heredoc` is a VS Code extension that provides syntax highlighting and validation within bash/shell heredocs based on the delimiter tag.
 
 ``` shell
 #!/bin/bash
