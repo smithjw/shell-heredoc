@@ -16,7 +16,8 @@ const defs = [
     { tags: ['XML', 'PLIST'], scope: 'text.xml' },
     { tags: ['JS', 'JAVASCRIPT'], scope: 'source.js' },
     { tags: ['TS', 'TYPESCRIPT'], scope: 'source.ts' },
-    { tags: ['MARKDOWN', 'MD'], scope: 'text.html.markdown' }
+    { tags: ['MARKDOWN', 'MD'], scope: 'text.html.markdown' },
+    { tags: ['PYTHON', 'PY'], scope: 'source.python' }
 ];
 
 // Scopes to approximate shell tokenization on the start line

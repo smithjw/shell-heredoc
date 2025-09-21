@@ -5,7 +5,9 @@ const TAG_TO_HANDLER = {
     YAML: 'yaml',
     YML: 'yaml',
     XML: 'xml',
-    PLIST: 'xml'
+    PLIST: 'xml',
+    PYTHON: 'python',
+    PY: 'python'
 };
 
 function escapeRe(s) {
