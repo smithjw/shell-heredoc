@@ -43,17 +43,28 @@ run = "pnpm run clean"
 [tasks.package]
 description = "Create VSIX (clean npm install)"
 run = """
-rm -rf node_modules package-lock.json
+set -euo pipefail
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+git archive --format=tar HEAD | tar -C "$tmp" -x
+cd "$tmp"
 npm install
-npm run package
+npm run build
+npx @vscode/vsce package
+cp ./*.vsix "$OLDPWD"/
 """
 depends = ["clean"]
 
 [tasks.publish]
 description = "Publish extension (clean npm install)"
 run = """
-rm -rf node_modules package-lock.json
+set -euo pipefail
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+git archive --format=tar HEAD | tar -C "$tmp" -x
+cd "$tmp"
 npm install
-npm run publish
+npm run build
+npx @vscode/vsce publish
 """
 depends = ["clean"]
