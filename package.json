@@ -74,26 +74,28 @@
         ]
     },
     "scripts": {
-        "build": "node scripts/build-grammar.mjs && esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --external:vscode-json-languageservice --sourcemap --outfile=dist/extension.js",
-        "dev": "esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --external:vscode-json-languageservice --watch --sourcemap --outfile=dist/extension.js",
+        "build": "node scripts/build-grammar.mjs && esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --external:vscode-json-languageservice --external:@zzzen/pyright-internal --sourcemap --outfile=dist/extension.js",
+        "dev": "esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --external:vscode-json-languageservice --external:@zzzen/pyright-internal --watch=forever --sourcemap --outfile=dist/extension.js",
         "vscode:prepublish": "pnpm run build",
-        "package": "rm -rf dist && npm ci && npm run build && vsce package",
-        "publish": "rm -rf dist && npm ci && npm run build && vsce publish",
+        "package": "rm -rf node_modules package-lock.json dist && npm install && npm run build && vsce package",
+        "publish": "rm -rf node_modules package-lock.json dist && npm install && npm run build && vsce publish",
         "test": "mocha --recursive test",
         "clean": "rm -rf dist *.vsix"
     },
     "dependencies": {
-        "vscode-json-languageservice": "^5.6.1",
+        "@zzzen/pyright-internal": "1.2.0-dev.20251207",
+        "vscode-json-languageservice": "^5.7.1",
         "vscode-languageserver-textdocument": "^1.0.12"
     },
     "devDependencies": {
-        "@vscode/vsce": "^3.0.0",
-        "esbuild": "^0.23.0",
-        "fast-xml-parser": "^4.5.0",
-        "js-yaml": "^4.1.0",
-        "mocha": "^11.0.0",
-        "@types/mocha": "^10.0.7",
-        "assert": "^2.1.0"
+        "@types/mocha": "^10.0.10",
+        "@vscode/vsce": "^3.7.1",
+        "assert": "^2.1.0",
+        "esbuild": "^0.27.2",
+        "fast-xml-parser": "^5.3.4",
+        "js-yaml": "^4.1.1",
+        "mocha": "^11.7.5",
+        "pyright": "^1.1.408"
     },
     "packageManager": "pnpm@10.16.1"
 }

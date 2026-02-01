@@ -1,83 +1,47 @@
-// Python validator using Python's AST module for syntax checking.
-const { spawn } = require('child_process');
+// Python syntax validator using pyright-internal (bundled, no system Python required)
+const { Parser } = require('@zzzen/pyright-internal/dist/parser/parser');
+
+function buildLineStarts(text) {
+    const starts = [0];
+    for (let i = 0; i < text.length; i++) {
+        if (text.charCodeAt(i) === 10) starts.push(i + 1); // "\n"
+    }
+    return starts;
+}
+
+function offsetToPos(offset, lineStarts) {
+    let lo = 0, hi = lineStarts.length - 1;
+    while (lo <= hi) {
+        const mid = (lo + hi) >> 1;
+        if (lineStarts[mid] <= offset) lo = mid + 1; else hi = mid - 1;
+    }
+    const line = Math.max(0, hi);
+    const character = offset - lineStarts[line];
+    return { line, character };
+}
 
 function validate(text) {
-    return new Promise((resolve) => {
-        try {
-            // Use Python's AST module to check syntax
-            const python = spawn('python3', ['-c', `
-import ast
-import sys
-try:
-    ast.parse(sys.stdin.read())
-    print("OK")
-except SyntaxError as e:
-    print(f"ERROR:{e.lineno or 1}:{e.offset or 1}:{e.msg or 'Invalid Python syntax'}")
-except Exception as e:
-    print(f"ERROR:1:1:{str(e)}")
-`], {
-                stdio: ['pipe', 'pipe', 'pipe']
+    try {
+        const parseResults = Parser.parseSourceFile(text, 'inmemory://heredoc.py', false, {});
+        const errors = parseResults && parseResults.parserErrors ? parseResults.parserErrors : [];
+        if (!errors.length) return [];
+        const lineStarts = buildLineStarts(text);
+        const maxErrors = 20;
+        const out = [];
+        for (let i = 0; i < errors.length && i < maxErrors; i++) {
+            const e = errors[i];
+            const start = offsetToPos(e.start, lineStarts);
+            const end = offsetToPos(e.start + Math.max(1, e.length || 1), lineStarts);
+            out.push({
+                message: e.message || 'Invalid Python syntax',
+                severity: 1,
+                range: { start, end }
             });
-
-            let output = '';
-            let errorOutput = '';
-
-            python.stdout.on('data', (data) => {
-                output += data.toString();
-            });
-
-            python.stderr.on('data', (data) => {
-                errorOutput += data.toString();
-            });
-
-            python.on('close', (code) => {
-                if (code !== 0) {
-                    // Python executable failed or not found
-                    resolve([]);
-                    return;
-                }
-
-                const result = output.trim();
-                if (result === 'OK') {
-                    resolve([]);
-                    return;
-                }
-
-                if (result.startsWith('ERROR:')) {
-                    const parts = result.substring(6).split(':', 3);
-                    const line = Math.max(0, parseInt(parts[0], 10) - 1);
-                    const character = Math.max(0, parseInt(parts[1], 10) - 1);
-                    const message = parts[2] || 'Invalid Python syntax';
-
-                    resolve([{
-                        message: message,
-                        severity: 1,
-                        range: {
-                            start: { line, character },
-                            end: { line, character: character + 1 }
-                        }
-                    }]);
-                    return;
-                }
-
-                // Fallback for unexpected output
-                resolve([]);
-            });
-
-            python.on('error', (err) => {
-                // Python executable not found or other spawn error
-                resolve([]);
-            });
-
-            // Send the Python code to stdin
-            python.stdin.write(text);
-            python.stdin.end();
-
-        } catch (e) {
-            // Any other error - return empty array (no validation)
-            resolve([]);
         }
-    });
+        return out;
+    } catch (err) {
+        return [];
+    }
 }
 
 module.exports = { validate };
