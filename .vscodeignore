@@ -1,4 +1,5 @@
-# Keep sources for validators (we ship node_modules dependencies now)
+# Everything ships bundled in dist/extension.js — no runtime node_modules needed
+node_modules/**
 src/**
 scripts/**
 test/**
@@ -6,4 +7,8 @@ test/**
 .prettier*
 .vscode/**
 .gitignore
-*.map
+**/*.map
+pnpm-lock.yaml
+pnpm-workspace.yaml
+mise.toml
+AGENTS.md

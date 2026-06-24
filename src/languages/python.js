@@ -1,47 +1,30 @@
-// Python syntax validator using pyright-internal (bundled, no system Python required)
-const { Parser } = require('@zzzen/pyright-internal/dist/parser/parser');
-
-function buildLineStarts(text) {
-    const starts = [0];
-    for (let i = 0; i < text.length; i++) {
-        if (text.charCodeAt(i) === 10) starts.push(i + 1); // "\n"
+// Python syntax validator using pyright-internal (bundled, no system Python required).
+// Lazily require the parser so module load is cheap and a load failure surfaces
+// as a visible per-block diagnostic (via extension.js) rather than crashing the host.
+let _mod;
+function getMod() {
+    if (!_mod) {
+        const parser = require('@zzzen/pyright-internal/dist/parser/parser');
+        const sink = require('@zzzen/pyright-internal/dist/common/diagnosticSink');
+        _mod = { Parser: parser.Parser, ParseOptions: parser.ParseOptions, DiagnosticSink: sink.DiagnosticSink };
     }
-    return starts;
+    return _mod;
 }
 
-function offsetToPos(offset, lineStarts) {
-    let lo = 0, hi = lineStarts.length - 1;
-    while (lo <= hi) {
-        const mid = (lo + hi) >> 1;
-        if (lineStarts[mid] <= offset) lo = mid + 1; else hi = mid - 1;
-    }
-    const line = Math.max(0, hi);
-    const character = offset - lineStarts[line];
-    return { line, character };
-}
+const MAX_ERRORS = 20;
 
 function validate(text) {
-    try {
-        const parseResults = Parser.parseSourceFile(text, 'inmemory://heredoc.py', false, {});
-        const errors = parseResults && parseResults.parserErrors ? parseResults.parserErrors : [];
-        if (!errors.length) return [];
-        const lineStarts = buildLineStarts(text);
-        const maxErrors = 20;
-        const out = [];
-        for (let i = 0; i < errors.length && i < maxErrors; i++) {
-            const e = errors[i];
-            const start = offsetToPos(e.start, lineStarts);
-            const end = offsetToPos(e.start + Math.max(1, e.length || 1), lineStarts);
-            out.push({
-                message: e.message || 'Invalid Python syntax',
-                severity: 1,
-                range: { start, end }
-            });
+    const { Parser, ParseOptions, DiagnosticSink } = getMod();
+    const sink = new DiagnosticSink();
+    new Parser().parseSourceFile(text, new ParseOptions(), sink);
+    return sink.getErrors().slice(0, MAX_ERRORS).map(e => ({
+        message: e.message || 'Invalid Python syntax',
+        severity: 1,
+        range: {
+            start: { line: e.range?.start?.line ?? 0, character: e.range?.start?.character ?? 0 },
+            end: { line: e.range?.end?.line ?? 0, character: e.range?.end?.character ?? 0 }
         }
-        return out;
-    } catch (err) {
-        return [];
-    }
+    }));
 }
 
 module.exports = { validate };

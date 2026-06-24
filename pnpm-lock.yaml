@@ -7,16 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@zzzen/pyright-internal':
-        specifier: 1.2.0-dev.20251207
-        version: 1.2.0-dev.20251207
-      vscode-json-languageservice:
-        specifier: ^5.7.1
-        version: 5.7.1
-      vscode-languageserver-textdocument:
-        specifier: ^1.0.12
-        version: 1.0.12
     devDependencies:
       '@types/mocha':
         specifier: ^10.0.10
@@ -24,6 +14,12 @@ importers:
       '@vscode/vsce':
         specifier: ^3.7.1
         version: 3.7.1
+      '@zzzen/pyright-internal':
+        specifier: 1.2.0-dev.20251207
+        version: 1.2.0-dev.20251207
+      acorn:
+        specifier: ^8.17.0
+        version: 8.17.0
       assert:
         specifier: ^2.1.0
         version: 2.1.0
@@ -39,9 +35,12 @@ importers:
       mocha:
         specifier: ^11.7.5
         version: 11.7.5
-      pyright:
-        specifier: ^1.1.408
-        version: 1.1.408
+      vscode-json-languageservice:
+        specifier: ^5.7.1
+        version: 5.7.1
+      vscode-languageserver-textdocument:
+        specifier: ^1.0.12
+        version: 1.0.12
 
 packages:
 
@@ -433,6 +432,11 @@ packages:
 
   '@zzzen/pyright-internal@1.2.0-dev.20251207':
     resolution: {integrity: sha512-Q2gxySp1WzeWktIgpzYpulDgP8oqo3lN/SkqR2ZdsZmB71jKhd02FWS4dDaRGSGCFERnFcS7qp15zUZSxVyZVg==}
+
+  acorn@8.17.0:
+    resolution: {integrity: sha512-xRQbDb9BnwDafYNn6Vwl839DYVjqXYb1XVGtWAZ1kcDc6iwAL4hg3B1dZlRiuENFeO2H53gFG3in621AdERVAg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -1308,11 +1312,6 @@ packages:
     resolution: {integrity: sha512-uxFIHU0YlHYhDQtV4R9J6a52SLx28BCjT+4ieh7IGbgwVJWO+km431c4yRlREUAsAmt/uMjQUyQHNEPf0M39CA==}
     engines: {node: '>=6'}
 
-  pyright@1.1.408:
-    resolution: {integrity: sha512-N61pxaLLCsPcUuPPHMNIrGoZgGBgrbjBX5UqkaT5UV8NVZdL7ExsO6N3ectv1DzAUsLOzdlyqoYtX76u8eF4YA==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-
   qs@6.14.1:
     resolution: {integrity: sha512-4EK3+xJl8Ts67nLYNwqw/dsFVnCf+qR7RgXSK9jEEm9unao3njwMDdmsdvoKBKHzxd7tCYz5e5M+SnMjdtXGQQ==}
     engines: {node: '>=0.6'}
@@ -2141,6 +2140,8 @@ snapshots:
       vscode-languageserver-textdocument: 1.0.12
       vscode-languageserver-types: 3.17.6-next.6
       vscode-uri: 3.1.0
+
+  acorn@8.17.0: {}
 
   agent-base@7.1.4: {}
 
@@ -3098,10 +3099,6 @@ snapshots:
     optional: true
 
   punycode.js@2.3.1: {}
-
-  pyright@1.1.408:
-    optionalDependencies:
-      fsevents: 2.3.3
 
   qs@6.14.1:
     dependencies:

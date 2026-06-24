@@ -1,7 +1,7 @@
 {
     "name": "shell-heredoc",
     "displayName": "shell-heredoc",
-    "description": "Highlights and validates JSON / YAML / XML inside shell heredoc blocks",
+    "description": "Highlights and validates JSON / YAML / XML / Python / JavaScript inside shell heredoc blocks",
     "version": "0.2.2",
     "repository": "https://github.com/smithjw/shell-heredoc",
     "publisher": "smithjw",
@@ -20,6 +20,8 @@
         "yaml",
         "yml",
         "xml",
+        "python",
+        "javascript",
         "validation"
     ],
     "main": "./dist/extension.js",
@@ -52,12 +54,17 @@
                 "shellHeredoc.validate.xml": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Validate XML heredocs."
+                    "description": "Validate XML and PLIST heredocs."
                 },
                 "shellHeredoc.validate.python": {
                     "type": "boolean",
                     "default": true,
                     "description": "Validate Python heredocs."
+                },
+                "shellHeredoc.validate.javascript": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Validate JavaScript heredocs."
                 },
                 "shellHeredoc.maxBytes": {
                     "type": "number",
@@ -74,28 +81,27 @@
         ]
     },
     "scripts": {
-        "build": "node scripts/build-grammar.mjs && esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --external:vscode-json-languageservice --external:@zzzen/pyright-internal --sourcemap --outfile=dist/extension.js",
-        "dev": "esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --external:vscode-json-languageservice --external:@zzzen/pyright-internal --watch=forever --sourcemap --outfile=dist/extension.js",
+        "build": "node scripts/build-grammar.mjs && esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --main-fields=module,main --sourcemap --outfile=dist/extension.js",
+        "dev": "esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --main-fields=module,main --watch=forever --sourcemap --outfile=dist/extension.js",
         "vscode:prepublish": "pnpm run build",
-        "package": "rm -rf node_modules package-lock.json dist && npm install && npm run build && vsce package",
-        "publish": "rm -rf node_modules package-lock.json dist && npm install && npm run build && vsce publish",
+        "smoke": "node scripts/smoke.js",
+        "package": "rm -rf node_modules dist && pnpm install --frozen-lockfile && pnpm run build && pnpm run smoke && vsce package --no-dependencies",
+        "publish": "rm -rf node_modules dist && pnpm install --frozen-lockfile && pnpm run build && pnpm run smoke && vsce publish --no-dependencies",
         "test": "mocha --recursive test",
         "clean": "rm -rf dist *.vsix"
-    },
-    "dependencies": {
-        "@zzzen/pyright-internal": "1.2.0-dev.20251207",
-        "vscode-json-languageservice": "^5.7.1",
-        "vscode-languageserver-textdocument": "^1.0.12"
     },
     "devDependencies": {
         "@types/mocha": "^10.0.10",
         "@vscode/vsce": "^3.7.1",
+        "@zzzen/pyright-internal": "1.2.0-dev.20251207",
+        "acorn": "^8.17.0",
         "assert": "^2.1.0",
         "esbuild": "^0.27.2",
         "fast-xml-parser": "^5.3.4",
         "js-yaml": "^4.1.1",
         "mocha": "^11.7.5",
-        "pyright": "^1.1.408"
+        "vscode-json-languageservice": "^5.7.1",
+        "vscode-languageserver-textdocument": "^1.0.12"
     },
     "packageManager": "pnpm@10.16.1"
 }
