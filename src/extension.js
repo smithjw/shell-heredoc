@@ -1,5 +1,6 @@
 const vscode = require('vscode');
-const { findBlocks, TAG_TO_HANDLER } = require('./heredoc');
+const { findBlocks, getBlockText, TAG_TO_HANDLER } = require('./heredoc');
+const { enabledFor, maxBytes } = require('./config');
 
 // JSON Language Service (full) for richer diagnostics
 const { getLanguageService } = require('vscode-json-languageservice');
@@ -8,6 +9,7 @@ const { TextDocument } = require('vscode-languageserver-textdocument');
 const yamlValidator = require('./languages/yaml');
 const xmlValidator = require('./languages/xml');
 const pythonValidator = require('./languages/python');
+const javascriptValidator = require('./languages/javascript');
 
 // Initialize JSON language service once.
 const jsonService = getLanguageService({});
@@ -31,24 +33,12 @@ const HANDLERS = {
     json: validateJson,
     yaml: yamlValidator.validate,
     xml: xmlValidator.validate,
-    python: pythonValidator.validate
+    python: pythonValidator.validate,
+    javascript: javascriptValidator.validate
 };
 
 // Cache last diagnostics version per document to avoid redundant work.
 const docVersionCache = new Map(); // uri -> version
-
-function enabledFor(key) {
-    const cfg = vscode.workspace.getConfiguration();
-    if (key === 'json' && !cfg.get('shellHeredoc.validate.json')) return false;
-    if (key === 'yaml' && !cfg.get('shellHeredoc.validate.yaml')) return false;
-    if (key === 'xml' && !cfg.get('shellHeredoc.validate.xml')) return false;
-    if (key === 'python' && !cfg.get('shellHeredoc.validate.python')) return false;
-    return true;
-}
-
-function maxBytes() {
-    return vscode.workspace.getConfiguration().get('shellHeredoc.maxBytes');
-}
 
 function mapSeverity(s) {
     const VS = vscode.DiagnosticSeverity;
@@ -62,15 +52,15 @@ async function validateDoc(doc, collection, force = false) {
         if (lastVersion === doc.version) return; // unchanged
     }
     const diags = [];
+    const cfg = vscode.workspace.getConfiguration();
+    const limit = maxBytes(cfg);
     const blocks = findBlocks(doc);
     for (const b of blocks) {
         const key = TAG_TO_HANDLER[b.tag];
         const validator = HANDLERS[key];
-        if (!validator || !enabledFor(key)) continue;
-        const bodyLines = [];
-        for (let ln = b.startLine; ln < b.endLine; ln++) bodyLines.push(doc.lineAt(ln).text);
-        const text = bodyLines.join('\n');
-        if (Buffer.byteLength(text, 'utf8') > maxBytes()) {
+        if (!validator || !enabledFor(cfg, key)) continue;
+        const text = getBlockText(doc, b);
+        if (Buffer.byteLength(text, 'utf8') > limit) {
             // Provide informational diagnostic about skipped large block
             const range = new vscode.Range(b.startLine, 0, b.startLine, 0);
             const d = new vscode.Diagnostic(range, `[heredoc:${key}] skipped validation (exceeds size limit)`, vscode.DiagnosticSeverity.Information);
@@ -127,4 +117,5 @@ function activate(context) {
 
 function deactivate() { }
 
-module.exports = { activate, deactivate };
+// validateDoc is exported for the bundle smoke test (scripts/smoke.js).
+module.exports = { activate, deactivate, validateDoc };
