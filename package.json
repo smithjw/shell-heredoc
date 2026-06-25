@@ -2,7 +2,7 @@
     "name": "shell-heredoc",
     "displayName": "shell-heredoc",
     "description": "Highlights and validates JSON / YAML / XML / Python / JavaScript inside shell heredoc blocks",
-    "version": "0.2.2",
+    "version": "0.3.0",
     "repository": "https://github.com/smithjw/shell-heredoc",
     "publisher": "smithjw",
     "icon": "images/icon.png",
