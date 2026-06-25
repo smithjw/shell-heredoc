@@ -1,6 +1,6 @@
 # AGENTS
 
-This repository uses OpenCode agents to assist with development.
+Guidance for AI coding agents working in this repository.
 
 Guidelines:
 - Keep edits minimal and focused; prefer pure JS dependencies for validation.
@@ -11,7 +11,7 @@ Guidelines:
 Bundling model:
 - Everything `require()`d from `src/` is bundled by esbuild into `dist/extension.js`. The vsix ships only `dist/` — no `node_modules`.
 - Runtime libs therefore live in `devDependencies` (they are build-time inputs to the bundle), and `dependencies` is empty. Do NOT add a validator lib to esbuild's `--external` list or it will fail to load at runtime.
-- Only `vscode` is external. `vscode-json-languageservice` needs `--main-fields=module,main` so esbuild follows its ESM build (the UMD `main` uses conditional requires esbuild can't inline).
+- Only `vscode` and node builtins are external. `vscode-json-languageservice` needs `--main-fields=module,main` so esbuild follows its ESM build (the UMD `main` uses conditional requires esbuild can't inline).
 - `pnpm run smoke` loads the built bundle (not `src/`) and asserts json/python/javascript diagnostics come back — this is the canary for a dependency failing to inline. It runs before `package`/`publish`.
 
 Adding a new language validator:
