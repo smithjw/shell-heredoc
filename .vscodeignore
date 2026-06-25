@@ -12,3 +12,5 @@ pnpm-lock.yaml
 pnpm-workspace.yaml
 mise.toml
 AGENTS.md
+tmp/**
+*.vsix

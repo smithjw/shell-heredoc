@@ -39,32 +39,14 @@ depends = ["install"]
 description = "Clean build artifacts"
 run = "pnpm run clean"
 
-# Packaging uses npm to avoid npm list issues with pnpm layout.
+# Packaging delegates to the pnpm scripts in package.json (single source of truth).
+# Those do a clean frozen install, build, smoke gate, then vsce --no-dependencies.
 [tasks.package]
-description = "Create VSIX (clean npm install)"
-run = """
-set -euo pipefail
-tmp=$(mktemp -d)
-trap 'rm -rf "$tmp"' EXIT
-git archive --format=tar HEAD | tar -C "$tmp" -x
-cd "$tmp"
-npm install
-npm run build
-npx @vscode/vsce package
-cp ./*.vsix "$OLDPWD"/
-"""
+description = "Create VSIX (clean pnpm install + smoke gate)"
+run = "pnpm run package"
 depends = ["clean"]
 
 [tasks.publish]
-description = "Publish extension (clean npm install)"
-run = """
-set -euo pipefail
-tmp=$(mktemp -d)
-trap 'rm -rf "$tmp"' EXIT
-git archive --format=tar HEAD | tar -C "$tmp" -x
-cd "$tmp"
-npm install
-npm run build
-npx @vscode/vsce publish
-"""
+description = "Publish extension (clean pnpm install + smoke gate)"
+run = "pnpm run publish"
 depends = ["clean"]
