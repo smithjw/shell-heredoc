@@ -25,6 +25,7 @@ This extension automatically detects and highlights code within heredoc blocks u
 | `html`       | `HTML`                 | no        |
 | `typescript` | `TS`, `TYPESCRIPT`     | no        |
 | `markdown`   | `MARKDOWN`, `MD`       | no        |
+| `applescript` | `APPLESCRIPT`         | no        |
 
 ## Installation
 
@@ -82,7 +83,7 @@ PYTHON
 
 See the commit history for full details.
 
-- Syntax highlighting for 10 languages, automatically detected from the heredoc delimiter
+- Syntax highlighting for 11 languages, automatically detected from the heredoc delimiter
 - In-process validation for JSON, YAML, XML, Python, and JavaScript — no system interpreters required
 - Works with both quoted and unquoted heredoc markers
 

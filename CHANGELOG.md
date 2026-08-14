@@ -4,6 +4,12 @@ All notable changes to the "shell-heredoc" extension will be documented in this 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [Unreleased]
+
+### Added
+
+- Syntax highlighting for `APPLESCRIPT` heredocs.
+
 ## [0.3.0]
 
 ### Added
