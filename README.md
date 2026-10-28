@@ -25,7 +25,7 @@ This extension automatically detects and highlights code within heredoc blocks u
 | `html`        | `HTML`                 | no        |
 | `typescript`  | `TS`, `TYPESCRIPT`     | no        |
 | `markdown`    | `MARKDOWN`, `MD`       | no        |
-| `applescript` | `APPLESCRIPT`          | no        |
+| `applescript` | `APPLESCRIPT`, `OSA`   | no        |
 
 ## Installation
 
