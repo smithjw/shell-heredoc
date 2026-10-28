@@ -13,19 +13,19 @@ JSON
 
 This extension automatically detects and highlights code within heredoc blocks using the following delimiter mappings. Languages marked as validated also get inline syntax diagnostics; validation runs entirely in-process, with no system interpreters or other dependencies required.
 
-| Language     | Supported Delimiters   | Validated |
-| ------------ | ---------------------- | --------- |
-| `json`       | `JSON`                 | yes       |
-| `yaml`       | `YAML`, `YML`          | yes       |
-| `xml`        | `XML`, `PLIST`         | yes       |
-| `python`     | `PYTHON`, `PY`         | yes       |
-| `javascript` | `JS`, `JAVASCRIPT`     | yes       |
-| `shell`      | `SHELL`, `BASH`, `ZSH` | no        |
-| `sql`        | `SQL`                  | no        |
-| `html`       | `HTML`                 | no        |
-| `typescript` | `TS`, `TYPESCRIPT`     | no        |
-| `markdown`   | `MARKDOWN`, `MD`       | no        |
-| `applescript` | `APPLESCRIPT`         | no        |
+| Language      | Supported Delimiters   | Validated |
+| ------------- | ---------------------- | --------- |
+| `json`        | `JSON`                 | yes       |
+| `yaml`        | `YAML`, `YML`          | yes       |
+| `xml`         | `XML`, `PLIST`         | yes       |
+| `python`      | `PYTHON`, `PY`         | yes       |
+| `javascript`  | `JS`, `JAVASCRIPT`     | yes       |
+| `shell`       | `SHELL`, `BASH`, `ZSH` | no        |
+| `sql`         | `SQL`                  | no        |
+| `html`        | `HTML`                 | no        |
+| `typescript`  | `TS`, `TYPESCRIPT`     | no        |
+| `markdown`    | `MARKDOWN`, `MD`       | no        |
+| `applescript` | `APPLESCRIPT`          | no        |
 
 ## Installation
 
@@ -66,7 +66,7 @@ PYTHON
 ## Extension Settings
 
 | Setting | Default | Description |
-| ------- | ------- | ----------- |
+| ------------- | ------- | ----------- |
 | `shellHeredoc.validate.json` | `true` | Validate JSON heredocs. |
 | `shellHeredoc.validate.yaml` | `true` | Validate YAML/YML heredocs. |
 | `shellHeredoc.validate.xml` | `true` | Validate XML and PLIST heredocs. |

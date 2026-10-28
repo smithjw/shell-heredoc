@@ -635,10 +635,10 @@
     {
       "begin": "(<<-?)\\s*(['\"]?)(APPLESCRIPT)(['\"]?)(?!\\w)(?:\\s*(?:(?:(\\d+)?\\s*(>>?|<<?|>&|&>|>\\||<>&?)\\s*(?:(\\\")(?:(?:[^\"\\\\$]|\\\\.|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*))*)(\\\")|(')([^']*)(')|(\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*)|([^\\t #]+)))|(\\|&?)\\s*([^#\\n]*?)))?\\s*(#.*)?$",
       "end": "(?=^\\s*(?:APPLESCRIPT)\\s*$)",
-      "contentName": "source.applescript",
+      "contentName": "source.applescript.shell-heredoc",
       "patterns": [
         {
-          "include": "source.applescript"
+          "include": "source.applescript.shell-heredoc"
         }
       ],
       "beginCaptures": {
