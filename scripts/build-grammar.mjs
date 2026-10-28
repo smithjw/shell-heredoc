@@ -18,7 +18,7 @@ const defs = [
     { tags: ['TS', 'TYPESCRIPT'], scope: 'source.ts' },
     { tags: ['MARKDOWN', 'MD'], scope: 'text.html.markdown' },
     { tags: ['PYTHON', 'PY'], scope: 'source.python' },
-    { tags: ['APPLESCRIPT'], scope: 'source.applescript.shell-heredoc' }
+    { tags: ['APPLESCRIPT', 'OSA'], scope: 'source.applescript.shell-heredoc' }
 ];
 
 // Scopes to approximate shell tokenization on the start line

@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Added
 
-- Syntax highlighting for `APPLESCRIPT` heredocs. The AppleScript grammar is bundled (from [idleberg/vscode-applescript](https://github.com/idleberg/vscode-applescript), MIT), so no separate AppleScript extension is needed.
+- Syntax highlighting for `APPLESCRIPT` and `OSA` heredocs. The AppleScript grammar is bundled (from [idleberg/vscode-applescript](https://github.com/idleberg/vscode-applescript), MIT), so no separate AppleScript extension is needed.
 
 ## [0.3.0]
 
