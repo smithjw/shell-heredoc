@@ -36,6 +36,10 @@
                 "injectTo": [
                     "source.shell"
                 ]
+            },
+            {
+                "scopeName": "source.applescript.shell-heredoc",
+                "path": "./syntaxes/applescript.tmLanguage.json"
             }
         ],
         "configuration": {
