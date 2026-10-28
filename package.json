@@ -92,16 +92,16 @@
     },
     "devDependencies": {
         "@types/mocha": "^10.0.10",
-        "@vscode/vsce": "^3.7.1",
+        "@vscode/vsce": "^4.1.0",
         "@zzzen/pyright-internal": "1.2.0-dev.20251207",
-        "acorn": "^8.17.0",
+        "acorn": "^8.19.0",
         "assert": "^2.1.0",
-        "esbuild": "^0.27.2",
-        "fast-xml-parser": "^5.3.4",
-        "js-yaml": "^4.1.1",
-        "mocha": "^11.7.5",
+        "esbuild": "^0.28.2",
+        "fast-xml-parser": "^5.11.2",
+        "js-yaml": "^5.5.0",
+        "mocha": "^12.0.3",
         "vscode-json-languageservice": "^5.7.1",
-        "vscode-languageserver-textdocument": "^1.0.12"
+        "vscode-languageserver-textdocument": "^1.0.16"
     },
     "packageManager": "pnpm@10.16.1"
 }
