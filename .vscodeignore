@@ -14,3 +14,4 @@ mise.toml
 AGENTS.md
 tmp/**
 *.vsix
+.github/**
