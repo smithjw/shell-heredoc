@@ -6,16 +6,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.3.1]
 
-### Changed
-
-- The bundle is minified and ships pyright's English messages only, cutting the vsix from ~620 KB to ~236 KB. Python syntax errors are now always in English, like the other validators.
-
-### Fixed
-
-- The packaged vsix no longer includes the repository's `.github/` folder.
-
-## [0.3.0]
-
 ### Added
 
 - JavaScript validation for `JS` / `JAVASCRIPT` heredocs, using a bundled copy of acorn.
@@ -28,6 +18,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Python validation now parses in-process with a bundled copy of pyright. No system `python3` is required.
 - The extension is now fully bundled: the published vsix ships only `dist/` and needs no `node_modules`.
+- The bundle is minified and ships pyright's English messages only, cutting the vsix from ~620 KB to ~236 KB. Python syntax errors are now always in English, like the other validators.
 
 ### Fixed
 
@@ -35,3 +26,4 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Unterminated heredocs no longer cause a quadratic scan that could freeze the editor.
 - `<<-` heredocs have their leading tabs stripped before validation, matching bash.
 - An invalid `shellHeredoc.maxBytes` value now falls back to the default instead of disabling the size guard.
+- The packaged vsix no longer includes the repository's `.github/` folder.
