@@ -4,6 +4,16 @@ All notable changes to the "shell-heredoc" extension will be documented in this 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.3.1]
+
+### Changed
+
+- The bundle is minified and ships pyright's English messages only, cutting the vsix from ~620 KB to ~236 KB. Python syntax errors are now always in English, like the other validators.
+
+### Fixed
+
+- The packaged vsix no longer includes the repository's `.github/` folder.
+
 ## [0.3.0]
 
 ### Added
@@ -18,7 +28,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Python validation now parses in-process with a bundled copy of pyright. No system `python3` is required.
 - The extension is now fully bundled: the published vsix ships only `dist/` and needs no `node_modules`.
-- The bundle is minified and ships pyright's English messages only, cutting the vsix from ~620 KB to ~236 KB. Python syntax errors are now always in English, like the other validators.
 
 ### Fixed
 
