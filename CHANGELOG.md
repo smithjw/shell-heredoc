@@ -4,12 +4,6 @@ All notable changes to the "shell-heredoc" extension will be documented in this 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
-
-### Added
-
-- Syntax highlighting for `APPLESCRIPT` and `OSA` heredocs. The AppleScript grammar is bundled (from [idleberg/vscode-applescript](https://github.com/idleberg/vscode-applescript), MIT), so no separate AppleScript extension is needed.
-
 ## [0.3.0]
 
 ### Added
@@ -17,6 +11,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - JavaScript validation for `JS` / `JAVASCRIPT` heredocs, using a bundled copy of acorn.
 - `shellHeredoc.validate.javascript` setting to toggle it.
 - Mocha test suite and a post-build smoke test that validates the bundled extension.
+- Syntax highlighting for `APPLESCRIPT` and `OSA` heredocs. Thanks @mjec for [#3](https://github.com/smithjw/shell-heredoc/pull/3)!
+- The AppleScript grammar is bundled (from [idleberg/vscode-applescript](https://github.com/idleberg/vscode-applescript), MIT), so no separate AppleScript extension is needed.
 
 ### Changed
 
