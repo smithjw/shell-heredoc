@@ -62,6 +62,9 @@ if (!require('fs').existsSync(bundlePath)) {
     console.error('smoke: dist/extension.js not found — run `pnpm run build` first');
     process.exit(1);
 }
+// Non-English locale: pyright must still report in English (only en-us strings are bundled).
+delete process.env.VSCODE_NLS_CONFIG;
+process.env.LANG = 'ja';
 const ext = require(bundlePath);
 
 // Drive validateDoc directly so the check is deterministic (no debounce timer).
@@ -78,6 +81,7 @@ const collection = vscodeStub.languages.createDiagnosticCollection();
 
     assert.ok(messages.some(m => m.includes('[heredoc:json]')), 'bundle produced no JSON diagnostic (json-languageservice not inlined?)');
     assert.ok(messages.some(m => m.includes('[heredoc:python]')), 'bundle produced no Python diagnostic (pyright not inlined?)');
+    assert.ok(messages.includes('[heredoc:python] Expected expression'), 'Python diagnostics are not in English (pyright locale stripping in scripts/build.mjs broken?)');
     assert.ok(messages.some(m => m.includes('[heredoc:javascript]')), 'bundle produced no JavaScript diagnostic (acorn not inlined?)');
     console.log(`smoke: bundle OK — ${captured.length} diagnostics:`);
     for (const m of messages) console.log('  -', m);

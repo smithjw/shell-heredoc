@@ -18,6 +18,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Python validation now parses in-process with a bundled copy of pyright. No system `python3` is required.
 - The extension is now fully bundled: the published vsix ships only `dist/` and needs no `node_modules`.
+- The bundle is minified and ships pyright's English messages only, cutting the vsix from ~620 KB to ~236 KB. Python syntax errors are now always in English, like the other validators.
 
 ### Fixed
 

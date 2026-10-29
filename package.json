@@ -85,7 +85,7 @@
         ]
     },
     "scripts": {
-        "build": "node scripts/build-grammar.mjs && esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --main-fields=module,main --minify --sourcemap --outfile=dist/extension.js",
+        "build": "node scripts/build-grammar.mjs && node scripts/build.mjs",
         "dev": "esbuild src/extension.js --bundle --platform=node --format=cjs --target=node18 --external:vscode --main-fields=module,main --watch=forever --sourcemap --outfile=dist/extension.js",
         "vscode:prepublish": "pnpm run build",
         "smoke": "node scripts/smoke.js",
