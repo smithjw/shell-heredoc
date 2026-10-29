@@ -11,6 +11,7 @@ Guidelines:
 Bundling model:
 - Everything `require()`d from `src/` is bundled by esbuild into `dist/extension.js`. The vsix ships only `dist/` — no `node_modules`.
 - Runtime libs therefore live in `devDependencies` (they are build-time inputs to the bundle), and `dependencies` is empty. Do NOT add a validator lib to esbuild's `--external` list or it will fail to load at runtime.
+- The esbuild config lives in `scripts/build.mjs`. It minifies and strips pyright's non-English message translations (~1.7 MB); the smoke test asserts Python errors stay English under `LANG=ja`.
 - Only `vscode` and node builtins are external. `vscode-json-languageservice` needs `--main-fields=module,main` so esbuild follows its ESM build (the UMD `main` uses conditional requires esbuild can't inline).
 - `pnpm run smoke` loads the built bundle (not `src/`) and asserts json/python/javascript diagnostics come back — this is the canary for a dependency failing to inline. It runs before `package`/`publish`.
 
