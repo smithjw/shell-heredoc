@@ -104,7 +104,7 @@
         "fast-xml-parser": "^5.11.2",
         "js-yaml": "^5.5.0",
         "mocha": "^12.0.3",
-        "vscode-json-languageservice": "^5.7.1",
+        "vscode-json-languageservice": "^5.7.2",
         "vscode-languageserver-textdocument": "^1.0.16"
     },
     "packageManager": "pnpm@10.16.1"
